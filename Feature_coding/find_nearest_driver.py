@@ -11,7 +11,7 @@ from sqlalchemy import create_engine, text
 app = Flask(__name__)
 
 # Set up database connection (replace with your MySQL database information)
-engine = create_engine('mysql+pymysql://Ecotup_Access:ecotup*@34.101.70.239/db_ecotup')
+engine = create_engine('mysql+pymysql://Ecotup_Access:12345@34.101.70.239/db_ecotup')
 
 user_id = 6
 def find_nearest_driver(user_id):
