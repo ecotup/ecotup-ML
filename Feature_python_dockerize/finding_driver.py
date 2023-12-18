@@ -67,23 +67,24 @@ def find_nearest_driver(user_id):
         return {'error': 'No drivers found'}
 
 
-finding_driver_bp = Blueprint('find_nearest_driver', __name__)
 
-@finding_driver_bp.route('/find_nearest_driver', methods=['POST'])
-def find_nearest_driver_endpoint():
+finding_driver_bp = Blueprint('find_nearest_driver', __name__)
+@finding_driver_bp.route('/find_nearest_driver/<int:user_id>', methods=['GET'])
+def find_nearest_driver_endpoint(user_id):
     print('hello find_nearest_driver!')
     try:
-        data = request.get_json()
-        user_id = data.get('user_id')
+        #data = request.get_json()
+        #user_id = data.get('user_id')
 
-        if user_id is not None:
-            result = find_nearest_driver(user_id)
-            return jsonify(result)
-        else:
-            return jsonify({'error': 'User ID not provided'})
+        #if user_id is not None:
+        result = find_nearest_driver(user_id)
+        return jsonify(result)
+        #else:
+        #   return jsonify({'error': 'User ID not provided'})
 
     except Exception as e:
         return jsonify({'error': str(e)})
+
 
 
 #running the app

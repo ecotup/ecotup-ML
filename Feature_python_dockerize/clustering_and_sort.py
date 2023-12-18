@@ -437,9 +437,11 @@ def assign_and_sort_with_tsp_greedy(cluster_data, vehicle_data):
 # **to send the result**
 """
 
+
+
 clustering_and_sort_bp = Blueprint('clustering_and_sorting', __name__)
 
-@clustering_and_sort_bp.route('/clustering_and_sorting', methods=['POST'])
+@clustering_and_sort_bp.route('/clustering_and_sorting', methods=['GET'])
 def clustering_and_sorting_endpoint():
     print('hello clustering_and_sorting!')
     try:
@@ -461,13 +463,18 @@ def clustering_and_sorting_endpoint():
         cluster0,cluster1,cluster2 = divide_clusters(clustered_data)
 
         # Assign and sort with TSP greedy algorithm for each cluster and driver
-        result_array_cluster0 = assign_and_sort_with_tsp_greedy(cluster0, driver1)
+        result_array_cluster0 = assign_and_sort_with_tsp_greedy(cluster0, driver1).tolist()
         print(result_array_cluster0)
-        result_array_cluster1 = assign_and_sort_with_tsp_greedy(cluster1, driver2)
+        result_array_cluster1 = assign_and_sort_with_tsp_greedy(cluster1, driver2).tolist()
         print(result_array_cluster1)
-        result_array_cluster2 = assign_and_sort_with_tsp_greedy(cluster2, driver3)
+        result_array_cluster2 = assign_and_sort_with_tsp_greedy(cluster2, driver3).tolist()
         print(result_array_cluster2)
-        return jsonify(result_array_cluster0,result_array_cluster1,result_array_cluster2)
+        return jsonify({
+            'cluster0': result_array_cluster0,
+            'cluster1': result_array_cluster1,
+            'cluster2': result_array_cluster2
+        })
+
 
 
 
