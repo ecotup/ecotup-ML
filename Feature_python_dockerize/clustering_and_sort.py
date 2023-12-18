@@ -9,7 +9,7 @@ Original file is located at
 # **THE REAL CODE**
 """
 
-# Commented out IPython magic to ensure Python compatibility.
+
 #download sqlalchemy and pymysql
 # %pip install --upgrade sqlalchemy pymysql
 
@@ -38,20 +38,10 @@ WHERE
 ORDER BY
     u.user_id ASC; '''
 
-    # Fetch data into a Pandas DataFrame
+
     data_input = engine.connect().execute(text(get_data_query))
     result_data = data_input.fetchall()
     return result_data
-
-#input_data_from_sql = fetch_data_from_mysql()
-
-#print(input_data_from_sql)
-
-# Generate random coordinates for 20 houses
-#np.random.seed(42)
-#houses_set1 = [(np.random.uniform(-7, -6), np.random.uniform(106, 107)) for _ in range(20)]
-#houses_set2 = [(np.random.uniform(-10, -11), np.random.uniform(132, 133)) for _ in range(20)]
-#houses_set3 = [(np.random.uniform(-15, -16), np.random.uniform(92, 93)) for _ in range(20)]
 
 """# **Do Clustering after getting the data**
 
@@ -73,7 +63,7 @@ def find_closest_centroids(X, centroids):
  # Set K
     K = centroids.shape[0]
 
-    # You need to return the following variables correctly
+    # need to return the following variables correctly
     idx = np.zeros(X.shape[0], dtype=int)
 
     for i in range(X.shape[0]):
@@ -87,10 +77,9 @@ def find_closest_centroids(X, centroids):
 def compute_centroids(X, idx, K):
 
 
-    # You need to return the following variables correctly
+    # need to return the following variables correctly
     centroids = np.zeros((K, X.shape[1]))
 
-    ### START CODE HERE ###
     for k in range(K):
         points = X[idx == k]
         centroids[k] = np.mean(points, axis=0)
@@ -147,7 +136,7 @@ def Clustering_Training(result_data) :
 # Set initial centroids by picking random examples from the dataset
     initial_centroids = kMeans_init_centroids(X, K)
     X_with_centroids = np.vstack((X, initial_centroids))
-# Append centroids to the dataset
+
 
     #print(X_with_centroids)
 # Run K-Means
@@ -165,7 +154,7 @@ def Clustering_Training(result_data) :
 
 def update_sql_with_clusters(clustered_data):
   try:
-    # ... your code ...
+
     engine = create_engine('mysql+pymysql://Ecotup_Access:ecotup*@34.101.70.239/db_ecotup')
     with engine.connect() as connection:
         take_user_id = connection.execute(text("SELECT user_id FROM tbl_user ORDER BY user_id ASC"))
@@ -193,7 +182,7 @@ def update_sql_with_clusters(clustered_data):
             user_longitude, user_latitude, cluster_assignment = row[:3]  # Assuming the first three columns are longitude, latitude, and cluster_assignment
 
 
-            #to make it start from 1
+       
 
             # Construct the new cluster name
             cluster_name = f"cluster {cluster_assignment}"
@@ -226,19 +215,13 @@ def update_sql_with_clusters(clustered_data):
 
   except Exception as e:
     print(f"Error: {e}")
-    # Get the maximum existing cluster_id in the tbl_cluster table
 
 
-
-# Example usage
-# clustered_data is assumed to be the result obtained from clustering, with columns [user_longitude, user_latitude, cluster_assignment]
-#update_sql_with_clusters(result_of_the_cluster)
 
 """# **Take the drivers data**"""
 
 engine = create_engine('mysql+pymysql://Ecotup_Access:ecotup*@34.101.70.239/db_ecotup')
 
-# Your SQL query
 def get_drivers_data():
     query = '''
 SELECT

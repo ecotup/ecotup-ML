@@ -9,8 +9,7 @@ Original file is located at
 # **THE APP**
 """
 
-# Commented out IPython magic to ensure Python compatibility.
-# backend_service.py (Flask app)
+
 # %pip install --upgrade sqlalchemy pymysql
 
 from flask import Flask, request, jsonify,Blueprint
@@ -19,7 +18,7 @@ from sqlalchemy import create_engine, text
 
 
 
-# Set up database connection (replace with your MySQL database information)
+
 
 def find_nearest_driver(user_id):
 
@@ -31,7 +30,7 @@ def find_nearest_driver(user_id):
         user_location = user_result.fetchone()
         print(user_location)
 
-    # Assuming the user_location contains both user_longitude and user_latitude
+
     user_longitude, user_latitude = user_location
 
     # Query to find the nearest driver
