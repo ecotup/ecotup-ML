@@ -25,7 +25,7 @@ The model that we use are Softmax and Sigmoid Trash Classification about the sig
 One of the Script here is for finding the nearest driver for the user in the one time only pick up. The first thing it do is to take the user id that already been sent to http parameter when running then the algorithm is using the SQLAlchemy to use the SQL engine for accessing the SQL that our Cloud Computing is working on and the pymysql is for running the query the query is used to take the user data longitude and latitude and then transfer it to another query that take the necessary data from driver id for calculation using haversine calculation and getting the nearest driver in the SQL database. Then it will return the necessary data to the android. The second one contain the model for clustering and sending the data and cluster it up then sort it using the TSP Greedy Algorithm for sorting it based on the nearest point and then sorting it in order. We also have the last script called flask-app-capstone for combining both of the routes and can be deployed on the same port using blueprint syntax that already exist in the Flask library.
 
 ## Folder list inside the repository and whats inside
-- feature_python_dockerize = inside is fill with features that already been prepared using dockerfile that only need to build image then deploy using google run
+- feature_python_dockerize = inside is fill with features that already been prepared using dockerfile that only need to build image then deploy using google cloud run
 - Model_Code = inside is fill with the model code that already succeeded and already turned into the model file while also implemented to the app
 
 ## Evaluation 
