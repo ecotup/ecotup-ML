@@ -24,7 +24,7 @@ from sklearn.cluster import KMeans
 """# **Take the user data from SQL**"""
 
 def fetch_data_from_mysql():
-    engine = create_engine('mysql+pymysql://Ecotup_Access:ecotup*@34.101.70.239/db_ecotup')
+    engine = create_engine('mysql+pymysql://Ecotup_user:ecotup!@34.128.90.76/db_ecotup')
 
     get_data_query = '''SELECT
     u.user_longitude,
@@ -155,7 +155,7 @@ def Clustering_Training(result_data) :
 def update_sql_with_clusters(clustered_data):
   try:
 
-    engine = create_engine('mysql+pymysql://Ecotup_Access:ecotup*@34.101.70.239/db_ecotup')
+    engine = create_engine('mysql+pymysql://Ecotup_user:ecotup!@34.128.90.76/db_ecotup')
     with engine.connect() as connection:
         take_user_id = connection.execute(text("SELECT user_id FROM tbl_user ORDER BY user_id ASC"))
         user_ids = [row.user_id for row in take_user_id]
@@ -220,7 +220,7 @@ def update_sql_with_clusters(clustered_data):
 
 """# **Take the drivers data**"""
 
-engine = create_engine('mysql+pymysql://Ecotup_Access:ecotup*@34.101.70.239/db_ecotup')
+engine = create_engine('mysql+pymysql://Ecotup_user:ecotup!@34.128.90.76/db_ecotup')
 
 def get_drivers_data():
     query = '''
@@ -428,7 +428,7 @@ clustering_and_sort_bp = Blueprint('clustering_and_sorting', __name__)
 def clustering_and_sorting_endpoint():
     print('hello clustering_and_sorting!')
     try:
-        engine = create_engine('mysql+pymysql://Ecotup_Access:ecotup*@34.101.70.239/db_ecotup')
+        engine = create_engine('mysql+pymysql://Ecotup_user:ecotup!@34.128.90.76/db_ecotup')
 
         # Fetch data from MySQL and assign it to result_data
         result_data = fetch_data_from_mysql()

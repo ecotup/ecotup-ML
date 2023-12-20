@@ -22,7 +22,7 @@ from sqlalchemy import create_engine, text
 
 def find_nearest_driver(user_id):
 
-    engine = create_engine('mysql+pymysql://Ecotup_Access:ecotup*@34.101.70.239/db_ecotup')
+    engine = create_engine('mysql+pymysql://Ecotup_user:ecotup!@34.128.90.76/db_ecotup')
     # Query to get the user's location
     user_query = text('SELECT user_longitude, user_latitude FROM tbl_user WHERE user_id = :user_id').bindparams(user_id=user_id)
     with engine.connect() as connection:
